@@ -23,6 +23,8 @@ header {
 
 .content {
   grid-area: content;
+  position: absolute;
+  bottom: 0;
   padding: 1rem;
 }
 
