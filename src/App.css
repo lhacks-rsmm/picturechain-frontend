@@ -1,5 +1,29 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'header header' 'navbar content';
+  height: 100vH;
+}
+
+header {
+  grid-area: header;
+  padding: 1rem;
+}
+
+.main-content {
+  grid-area: navbar;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'navbar content';
+  padding: 1rem;
+}
+
+.content {
+  grid-area: content;
+  padding: 1rem;
 }
 
 .App-logo {
