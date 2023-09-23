@@ -22,8 +22,9 @@ function PromptForm() {
     return (
         <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={10}>
+                <Grid item xs={12} md={8}>
                     <TextField 
+                        fullWidth
                         id="prompt-input" 
                         label="Prompt" 
                         variant="outlined" 
@@ -31,7 +32,10 @@ function PromptForm() {
                         onChange={handleChange}>
                     </TextField>
                 </Grid>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={12} md={4} 
+                    container
+                    justify={"center"}
+                    alignItems={"center"}>
                     <Button 
                         type="submit" 
                         id="submit-button" 
