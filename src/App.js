@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormControl, Button, FormGroup, Navbar, Nav, NavItem} from 'react-bootstrap';
 
 import VerticalNavbar from './components/VerticalNavbar';
+import PromptForm from './components/PromptForm';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer " + "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"
+              "Authorization": "Bearer " + "" //"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"
             },
             body: JSON.stringify({
               "model" : "gpt-4",
@@ -57,10 +58,11 @@ function App() {
       <header>
       <h2>New chat</h2>
       </header>
+      <PromptForm />
       <main className='main-content'>
       <VerticalNavbar />
       <div className='content'>
-      <div style={{ whiteSpace: 'pre-line', overflow: 'auto', maxHeight: '490px' }}>
+      <div style={{ whiteSpace: 'pre-line', overflow: 'auto', maxHeight: '450px' }}>
         {message}
       </div>
       <Form onSubmit={handleSubmit}>
