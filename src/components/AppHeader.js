@@ -12,8 +12,9 @@ function AppHeader() {
         <>
             <AuthModal open={open} handleClose={handleClose}/>
             <Grid container spacing={3}>
+                <Grid item xs={0} md={1}/>
                 <Grid item xs={3}><Link to="/home" className="MuiTypography-root" ><Typography variant="h4">Picture Chain</Typography></Link></Grid>
-                <Grid item xs={7}/>
+                <Grid item xs={7} md={6}/>
                 <Grid item xs={2}><Button variant="outlined" onClick={handleOpen} className="login-button">Login</Button></Grid>
             </Grid>
         </>
