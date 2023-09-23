@@ -7,7 +7,8 @@
 }
 
 body{
-  background-color: #f5f5f5;
+  color: var(--russian-violet) !important;
+  background-color: var(--lavender-blush);
 }
 
 .main-container{
@@ -20,12 +21,12 @@ body{
 
 .img-container {
   height: 100%;
-  background-color: yellow;
+  background-color: white;
 }
 
 .auth-modal{
   display: block;
-  background-color: #f5f5f5;
+  background-color: var(--lavender-blush);
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
@@ -35,4 +36,9 @@ body{
   width: 20%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.lobby-button {
+  background-color: var(--sky-blue) !important;
+  color: var(--russian-violet) !important;
 }
