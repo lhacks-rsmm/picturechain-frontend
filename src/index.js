@@ -4,11 +4,11 @@ import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/home";
-import { CookiesProvider } from "react-cookie";
+import { UserContextProvider } from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <CookiesProvider>
+    <UserContextProvider>
         <BrowserRouter>
             <Routes>
                 <Route index element={<App />} />
@@ -16,5 +16,5 @@ root.render(
                 <Route path="home" element={<Home />} />
             </Routes>
         </BrowserRouter>
-    </CookiesProvider>
+    </UserContextProvider>
 );

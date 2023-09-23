@@ -10,7 +10,7 @@ function AppHeader(props) {
 
     return (
         <>
-            <AuthModal open={open} handleClose={handleClose} setCookie={props.setCookie}/>
+            <AuthModal open={open} handleClose={handleClose}/>
             <Grid container spacing={3}>
                 <Grid item xs={3}><Link to="/home" className="MuiTypography-root" ><Typography variant="h4">Picture Chain</Typography></Link></Grid>
                 <Grid item xs={7}/>
