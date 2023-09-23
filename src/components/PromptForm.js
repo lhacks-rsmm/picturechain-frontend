@@ -32,7 +32,8 @@ function PromptForm() {
                         onChange={handleChange}>
                     </TextField>
                 </Grid>
-                <Grid item xs={12} md={4} 
+                <Grid item xs={0} md={1} />
+                <Grid item xs={12} md={3} 
                     container
                     justify={"center"}
                     alignItems={"center"}>
