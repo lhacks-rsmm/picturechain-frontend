@@ -1,19 +1,9 @@
 import "./App.css";
-
-import { Grid } from "@mui/material";
-import ImageArea from "./components/ImageArea";
-import UserList from "./components/UserList";
+import Home from "./pages/home";
 
 function App() {
     return (
-      <Grid container spacing={3} className="main-container">
-        <Grid item xs={8}>
-          <ImageArea />
-        </Grid>
-        <Grid item xs={4}>
-          <UserList />
-        </Grid>
-      </Grid>
+      <Home />
     );
 }
 
