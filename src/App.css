@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100&family=DM+Serif+Display&display=swap');
+
 :root{
   --sky-blue: #51C1F3;
   --electric-purple: #C300FF;
   --lavender-blush: #EEE5E9;
   --russian-violet: #0B032D;
   --bright-pink: #E85D75;
+  --heading-font: 'DM Serif Display', Serif;
+  --normal-font: 'DM Sans', Sans;
 }
 
 body{
   color: var(--russian-violet) !important;
   background-color: var(--lavender-blush);
+  font: var(--normal-font) !important;
 }
 
 .main-container{
@@ -54,4 +60,12 @@ body{
 .modal-button {
   background-color: var(--bright-pink) !important;
   color: var(--lavender-blush) !important;
+}
+
+.MuiTypography-root {
+  font-family: var(--heading-font) !important;
+}
+
+a {
+  text-decoration: none !important;
 }
