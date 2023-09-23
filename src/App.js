@@ -1,13 +1,9 @@
 import "./App.css";
-
-import { Grid } from "@mui/material";
-import ImageArea from "./components/ImageArea";
-import UserList from "./components/UserList";
-import Dashboard from "./pages/Dashboard";
+import Home from "./pages/home";
 
 function App() {
     return (
-      <Dashboard />
+      <Home />
     );
 }
 
