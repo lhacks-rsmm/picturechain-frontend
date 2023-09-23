@@ -15,6 +15,7 @@ export default function AuthModal(props) {
                 <Typography variant="h5" textAlign="center">Login</Typography>
                 <TextField
                     id="name-field"
+                    type="text"
                     label="Username"
                     variant="outlined"
                     value={username}
@@ -22,6 +23,7 @@ export default function AuthModal(props) {
                 />
                 <TextField
                     id="pswd-field"
+                    type="password"
                     label="Password"
                     variant="outlined"
                     value={password}
