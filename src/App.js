@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormControl, Button, FormGroup, Navbar, Nav, NavItem} from 'react-bootstrap';
 
+import VerticalNavbar from './components/VerticalNavbar';
+
 
 function App() {
   const [message, setMessage] = useState("");
@@ -15,10 +17,10 @@ function App() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer " + "" //"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"
+              "Authorization": "Bearer " + "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"
             },
             body: JSON.stringify({
-              "model" : "gpt-3.5-turbo",
+              "model" : "gpt-4",
               "messages": [{
                 "role" : "user",
                 "content" : m
@@ -56,21 +58,9 @@ function App() {
       <h2>New chat</h2>
       </header>
       <main className='main-content'>
-      <Navbar>
-        <Nav className='flex-column'>
-          <NavItem>
-            1
-          </NavItem>
-          <NavItem>
-            2
-          </NavItem>
-          <NavItem>
-            3
-          </NavItem>
-        </Nav>
-      </Navbar>
+      <VerticalNavbar />
       <div className='content'>
-      <div style={{ whiteSpace: 'pre-line' }}>
+      <div style={{ whiteSpace: 'pre-line', overflow: 'auto', maxHeight: '490px' }}>
         {message}
       </div>
       <Form onSubmit={handleSubmit}>
