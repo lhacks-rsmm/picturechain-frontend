@@ -1,3 +1,11 @@
+:root{
+  --sky-blue: #51C1F3;
+  --electric-purple: #C300FF;
+  --lavender-blush: #EEE5E9;
+  --russian-violet: #0B032D;
+  --bright-pink: #E85D75;
+}
+
 body{
   background-color: #f5f5f5;
 }
