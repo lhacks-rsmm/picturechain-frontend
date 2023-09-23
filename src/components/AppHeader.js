@@ -14,7 +14,7 @@ function AppHeader() {
             <Grid container spacing={3}>
                 <Grid item xs={2}><Link to="/home">Picture Chain</Link></Grid>
                 <Grid item xs={8}/>
-                <Grid item xs={2}><Button variant="outlined" onClick={handleOpen}>Login</Button></Grid>
+                <Grid item xs={2}><Button variant="outlined" onClick={handleOpen} className="login-button">Login</Button></Grid>
             </Grid>
         </>
     )

@@ -22,11 +22,13 @@ body{
 .img-container {
   height: 100%;
   background-color: white;
+  border-radius: 10px;
 }
 
 .auth-modal{
   display: block;
   background-color: var(--lavender-blush);
+  color: var(--russian-violet) !important;
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
@@ -36,9 +38,20 @@ body{
   width: 20%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
 
 .lobby-button {
   background-color: var(--sky-blue) !important;
   color: var(--russian-violet) !important;
+}
+
+.login-button {
+  border-color: var(--electric-purple) !important;
+  color: var(--electric-purple) !important;
+}
+
+.modal-button {
+  background-color: var(--bright-pink) !important;
+  color: var(--lavender-blush) !important;
 }
