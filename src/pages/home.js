@@ -2,16 +2,19 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 import AppHeader from "../components/AppHeader";
-import { useUserContext } from "../hooks/useUserContext";
 import { json } from "react-router-dom";
+import { useMainContext } from "../hooks/useMainContext";
+
 
 export default function Home() {
-    const { user } = useUserContext();
+    const { user, lobby, dispatch} = useMainContext();
+
 
     const createLobby = async (type) => {
         const apiURL = "http://127.0.0.1:8000/createLobby";
 
         const data = {userID: user, lobbyType: type};
+
         console.log(data);
         console.log(JSON.stringify());
 
@@ -22,7 +25,8 @@ export default function Home() {
             mode: "cors"
         })).json();
 
-        console.log(response);
+        if (response !== null)
+            dispatch({type: "SET_LOBBY", payload: response }); 
     }
 
     return (
@@ -38,7 +42,7 @@ export default function Home() {
                 </Grid>
             <Grid item align xs={1} />
             <Grid item xs={3} />
-            <Grid item xs={3}><Button variant="contained" className="lobby-button" onClick={() => createLobby(0)}>Public</Button></Grid>
+            <Grid i tem xs={3}><Button variant="contained" className="lobby-button" onClick={() => createLobby(0)}>Public</Button></Grid>
             <Grid item xs={3}><Button variant="contained" className="lobby-button">Private</Button></Grid>
             <Grid item xs={3} />
         </Grid>

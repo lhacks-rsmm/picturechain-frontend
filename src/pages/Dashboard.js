@@ -5,7 +5,7 @@ import UserList from "../components/UserList";
 import PromptForm from "../components/PromptForm";
 import AppHeader from "../components/AppHeader";
 
-function Dashboard() {
+function Dashboard({ context }) {
     const [currentImage, setCurrentImage] = useState("https://picsum.photos/800/600");
 
     return (
