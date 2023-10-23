@@ -3,22 +3,24 @@ import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 import AppHeader from "../components/AppHeader";
 import { useUserContext } from "../hooks/useUserContext";
+import { json } from "react-router-dom";
 
 export default function Home() {
     const { user } = useUserContext();
 
     const createLobby = async (type) => {
-        const apiURL = "https://571e-209-87-29-242.ngrok-free.app/createLobby";
+        const apiURL = "http://127.0.0.1:8000/createLobby";
 
-        const data = {"userID": user, "lobbyType": type};
-        console.log(user);
+        const data = {userID: user, lobbyType: type};
+        console.log(data);
+        console.log(JSON.stringify());
 
-        const response = await fetch(apiURL, {
+        const response = await (await fetch(apiURL, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {"Content-Type": "application/json"},
-            mode: "no-cors"
-        })
+            mode: "cors"
+        })).json();
 
         console.log(response);
     }
