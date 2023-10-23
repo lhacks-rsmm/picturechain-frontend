@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import {React, useState} from "react";
 import AuthModal from "./AuthModal";
 
-function AppHeader() {
-    const [open, setOpen] = useState(false);
+function AppHeader(props) {
+    const [open, setOpen] = useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
