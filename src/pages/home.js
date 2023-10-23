@@ -29,10 +29,10 @@ export default function Home() {
             <Grid item xs={12}><AppHeader /></Grid>
             <Grid item xs={1} />
             <Grid item xs={10} className="img-container">
-                <div style={{height: "512px", width:"512px"}} className="featured-drawing">
-
-                Featured drawing
-                </div>
+                <Container className="featured-drawing" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <img src={process.env.PUBLIC_URL + '/images/img-3GnyG2AGnbEY8yzfAliOgfmv.png'} alt="Cannot Load" style={{height:'73vh'}}/>
+                    <img src={process.env.PUBLIC_URL + '/images/img-zZfkp0rr2YQyoZCFOXsNshPq.png'} alt="Cannot Load" style={{height:'73vh'}}/>
+                </Container>
                 </Grid>
             <Grid item align xs={1} />
             <Grid item xs={3} />
