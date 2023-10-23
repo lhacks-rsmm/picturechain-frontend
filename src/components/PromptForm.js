@@ -3,14 +3,36 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Grid } from "@mui/material";
 
-function PromptForm() {
+function PromptForm(props) {
     const [inputValue, setInputValue] = useState("");
+
+    async function Prompt(message)
+    {
+        let promptObj = {
+            "lobbyID": "", //TODO
+            "userID" : "", //TODO
+            "messages": message 
+        };
+
+        let request = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(promptObj)
+        };
+
+
+        let response = await fetch("https://630a-209-87-29-242.ngrok-free.app/", request);
+        
+        return response.json();
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
     
         // TODO
-        console.log("Submit");
+        Prompt(inputValue).then((data) => { console.log(data.choices[0].message);});
     
         setInputValue("");
       }
@@ -22,6 +44,7 @@ function PromptForm() {
     return (
         <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
+                <Grid item xs={0} md={1}/>
                 <Grid item xs={12} md={8}>
                     <TextField 
                         fullWidth
@@ -32,7 +55,7 @@ function PromptForm() {
                         onChange={handleChange}>
                     </TextField>
                 </Grid>
-                <Grid item xs={12} md={4} 
+                <Grid item xs={12} md={3} 
                     container
                     justify={"center"}
                     alignItems={"center"}>

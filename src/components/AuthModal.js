@@ -10,11 +10,12 @@ export default function AuthModal(props) {
     }
 
     return (
-        <Modal open={props.open} onClose={props.handleClose} >
+        <Modal open={props.open} onClose={props.handleClose}>
             <Stack className="auth-modal" gap={3}>
-                <Typography variant="h4">Login</Typography>
+                <Typography variant="h5" textAlign="center">Login</Typography>
                 <TextField
                     id="name-field"
+                    type="text"
                     label="Username"
                     variant="outlined"
                     value={username}
@@ -22,12 +23,13 @@ export default function AuthModal(props) {
                 />
                 <TextField
                     id="pswd-field"
+                    type="password"
                     label="Password"
                     variant="outlined"
                     value={password}
                     onChange={(e) => {setPassword(e.target.value)}}
                 />
-                <Button onClick={handleLogin}>Login</Button>
+                <Button variant="contained" className="modal-button" onClick={handleLogin}>Login</Button>
             </Stack>
         </Modal>
     );

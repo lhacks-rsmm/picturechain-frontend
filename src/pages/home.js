@@ -1,33 +1,31 @@
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import Button from "@mui/material/Button";
-import { useState } from "react";
-import AuthModal from "../components/AuthModal";
+import { Container } from "@mui/material";
+import AppHeader from "../components/AppHeader";
+import {Link} from "react-router-dom"
 
 
 export default function Home() {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     return (
         <>
-        <AuthModal open={open} handleClose={handleClose}/>
         <Grid container spacing={3}>
-            <Grid item xs={2}>Picture Chain</Grid>
-            <Grid item xs={8}/>
-            <Grid item xs={2}><Button variant="outlined" onClick={handleOpen}>Login</Button></Grid>
+            <Grid item xs={12}><AppHeader /></Grid>
             <Grid item xs={1} />
             <Grid item xs={10} className="img-container">
-                <div style={{height: "512px", width:"512px"}}>
-
-                Featured drawing
-                </div>
-                </Grid>
+                <Container className="featured-drawing" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                <img src={process.env.PUBLIC_URL + '/images/img-3GnyG2AGnbEY8yzfAliOgfmv.png'} alt="Cannot Load" style={{height:'73vh'}}/>
+                <img src={process.env.PUBLIC_URL + '/images/img-zZfkp0rr2YQyoZCFOXsNshPq.png'} alt="Cannot Load" style={{height:'73vh'}}/>
+                </Container>
+            </Grid>
             <Grid item xs={1} />
-            <Grid item xs={3} />
-            <Grid item xs={3}><Button variant="contained">Public</Button></Grid>
-            <Grid item xs={3}><Button variant="contained">Private</Button></Grid>
-            <Grid item xs={3} />
+            <Grid item xs={1} />
+            <Grid item xs={10}>
+                <Container className="featured-drawing" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Link to="/dashboard"><Button variant="contained" className="lobby-button" style={{ marginRight: '16px' }}>Public</Button></Link>
+                    <Button variant="contained" className="lobby-button"  style={{ marginLeft: '16px' }}>Private</Button>
+                </Container>
+            </Grid>
+            <Grid item xs={1} />
         </Grid>
         </>
     );
