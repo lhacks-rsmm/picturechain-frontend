@@ -4,17 +4,20 @@ import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/home";
-import { MainContext, MainContextProvider } from "./context/MainContext";
+import { UserContext, UserContextProvider } from "./context/UserContext";
+import { LobbyContextProvider } from "./context/LobbyContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <MainContextProvider>
-        <BrowserRouter>
-            <Routes>
-                <Route index element={<App />} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="home" element={<Home />} />
-            </Routes>
-        </BrowserRouter>
-    </MainContextProvider>
+    <UserContextProvider>
+        <LobbyContextProvider>        
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<App />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="home" element={<Home />} />
+                </Routes>
+            </BrowserRouter>
+        </LobbyContextProvider>
+    </UserContextProvider>
 );

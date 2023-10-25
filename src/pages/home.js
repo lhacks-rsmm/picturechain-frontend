@@ -3,18 +3,31 @@ import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 import AppHeader from "../components/AppHeader";
 import { json } from "react-router-dom";
-import { useMainContext } from "../hooks/useMainContext";
+import { createContext } from "react";
+import { useUserContext } from "../hooks/useUserContext";
+import { useLobbyContext } from "../hooks/useLobbyContext";
+import { useEffect, useState, useContext } from "react";
+import { ContactSupport } from "@mui/icons-material";
 
+export const GlobalConfig = createContext({
+    BaseURL: process.env.REACT_APP_BASE_URL
+});
 
 export default function Home() {
-    const { user, lobby, dispatch} = useMainContext();
+    const { user, userDispatch } = useUserContext();  
+    const { lobby, lobbyDispatch } = useLobbyContext();
 
+    const [ availableLobbies, setAvailableLobbies ] = useState();
+
+    const config = useContext(GlobalConfig);
 
     const createLobby = async (type) => {
-        const apiURL = "http://127.0.0.1:8000/createLobby";
+        const apiURL = config.BaseURL + "/createLobby";
+
+        console.log(config);
 
         const data = {userID: user, lobbyType: type};
-
+        
         console.log(data);
         console.log(JSON.stringify());
 
@@ -26,11 +39,29 @@ export default function Home() {
         })).json();
 
         if (response !== null)
-            dispatch({type: "SET_LOBBY", payload: response }); 
+            lobbyDispatch({type: "SET_LOBBY", payload: response }); 
     }
 
+
+    const getLobbies = useEffect(() => {
+        async function fetchLobbies() {
+            const response = await (await fetch(config.BaseURL + "/getLobbies", {
+                method: "GET",
+                mode: "cors"
+            })).json();
+
+            console.log(response);
+
+           
+            setAvailableLobbies(response); 
+        };
+        return fetchLobbies();
+    }, []);
+    
+    console.log(availableLobbies);
+
     return (
-        <>
+        <div onLoad={getLobbies}>
         <Grid container spacing={3}>
             <Grid item xs={12}><AppHeader /></Grid>
             <Grid item xs={1} />
@@ -46,6 +77,7 @@ export default function Home() {
             <Grid item xs={3}><Button variant="contained" className="lobby-button">Private</Button></Grid>
             <Grid item xs={3} />
         </Grid>
-        </>
+        </div>
+
     );
 }

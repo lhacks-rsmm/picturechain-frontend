@@ -1,11 +1,11 @@
 import { Modal, TextField, Typography, Stack, Button } from "@mui/material";
 import { useState } from "react";
-import { useMainContext } from "../hooks/useMainContext";
+import { useUserContext } from "../hooks/useUserContext";
 
 export default function AuthModal(props) {
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(null);
 
-    const { dispatch } = useMainContext();
+    const { dispatch } = useUserContext();
 
     const handle = () => {
         if (username)
