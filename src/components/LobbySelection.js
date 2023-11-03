@@ -7,8 +7,6 @@ function LobbySelection(props) {
         props.setSelect(props.id);
     };
 
-    console.log(props.id);
-
     return (
         <>
             <Typography id="lobby-selection" onClick={handle} className={props.selected}>{props.id}</Typography>
