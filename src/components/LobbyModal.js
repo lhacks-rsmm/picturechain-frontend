@@ -1,0 +1,92 @@
+import { Modal, Typography, Stack, Button, Box, Paper } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useUserContext } from "../hooks/useUserContext";
+import LobbySelection from "./LobbySelection";
+import { useNavigate } from "react-router-dom";
+
+
+export default function LobbyModal(props) {
+    const [select, setSelect] = useState(null);
+    const [ availableLobbies, setAvailableLobbies ] = useState([]);
+
+    const navigate = useNavigate();
+
+    //const { lobby, lobbyDispatch } = useLobbyContext();
+
+    const { dispatch } = useUserContext();
+
+    const handleJoin = () => {
+        if (select !== null) {
+            joinLobby()
+        }
+    };
+
+    const handleCreate = () => {
+        createLobby();
+    };
+
+    useEffect(() => {
+        const apiURL = "http://127.0.0.1:8000" + "/getLobbies";
+        async function fetchLobbies() {
+            const response = await (await fetch(apiURL, {
+                method: "GET",
+                mode: "cors"
+            })).json();
+           
+            setAvailableLobbies(response); 
+        };
+        fetchLobbies();
+    }, []);
+
+    const createLobby = async (type) => {
+        const apiURL = "http://127.0.0.1:8000" + "/createLobby";
+
+        const data = {userID: "test", lobbyType: 0};
+
+        const response = await (await fetch(apiURL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"},
+            mode: "cors"
+        })).json();
+
+        if (response !== null) {
+            navigate("/dashboard");
+        }
+    }
+
+    const joinLobby = async (type) => {
+        const apiURL = "http://127.0.0.1:8000" + "/joinLobby";
+
+        const data = {userID: "test", lobbyID: select};
+
+        const response = await (await fetch(apiURL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"},
+            mode: "cors"
+        })).json();
+
+        if (response !== null) {
+            navigate("/dashboard");
+        }
+    }
+
+    const lobbyList = availableLobbies.map((lobby) => {
+        const isSelected = select == lobby.id ? "selected" : "not-selected"
+        return <LobbySelection id={lobby.id} setSelect={setSelect} selected={isSelected}></LobbySelection>
+    });
+
+    return (
+        <Modal open={props.open} onClose={props.handleClose}>
+            <Stack className="lobby-modal" gap={3}>
+                <Typography variant="h5" textAlign="center">Lobbies</Typography>
+                <Paper style={{height : 100, overflow:'auto'}}>
+                    {lobbyList}
+                </Paper>
+                <Button variant="contained" className="modal-button" onClick={handleJoin}>Join</Button>
+                <Button variant="contained" className="modal-button" onClick={handleCreate}>Create</Button>
+            </Stack>
+        </Modal>
+    );
+}

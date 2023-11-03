@@ -69,3 +69,27 @@ body{
 a {
   text-decoration: none !important;
 }
+
+#lobby-selection {
+  padding: 5px;
+}
+
+#lobby-selection:hover, .selected {
+  background-color: var(--bright-pink) !important;
+}
+
+.lobby-modal{
+  display: block;
+  background-color: var(--lavender-blush);
+  color: var(--russian-violet) !important;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 2em;
+  left: 34%;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}

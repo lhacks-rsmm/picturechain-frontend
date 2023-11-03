@@ -23,7 +23,7 @@ function PromptForm(props) {
         };
 
 
-        let response = await fetch("https://630a-209-87-29-242.ngrok-free.app/", request);
+        let response = await fetch("http://127.0.0.1:8000", request);
         
         return response.json();
     }
