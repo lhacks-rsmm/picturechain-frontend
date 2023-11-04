@@ -2,39 +2,43 @@ import {React, useState} from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Grid } from "@mui/material";
+import { useContext } from 'react';
+import { LobbyContext } from '../context/LobbyContext';
+import { UserContext } from '../context/UserContext';
 
 function PromptForm(props) {
     const [inputValue, setInputValue] = useState("");
+    const { id } = useContext(LobbyContext);
+    const { user } = useContext(UserContext);
 
-    async function Prompt(message)
+    async function Prompt()
     {
         let promptObj = {
-            "lobbyID": "", //TODO
-            "userID" : "", //TODO
-            "messages": message 
+            "lobbyID": id,
+            "userID" : user,
+            "message": inputValue
         };
 
-        let request = {
+        const apiURL = "http://127.0.0.1:8000" + "/prompt";
+
+        const response = await (await fetch(apiURL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(promptObj)
-        };
+            body: JSON.stringify(promptObj),
+            headers: {"Content-Type": "application/json"},
+            mode: "cors"
+        })).json();
 
+        if (response !== null && response.result !== null) {
+            props.setCurrentImage(response.result.data[0].url);
+        }
 
-        let response = await fetch("http://127.0.0.1:8000", request);
-        
-        return response.json();
+        setInputValue("");
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-    
-        // TODO
-        Prompt(inputValue).then((data) => { console.log(data.choices[0].message);});
-    
-        setInputValue("");
+
+        Prompt();
       }
 
     function handleChange(e) {

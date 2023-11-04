@@ -1,26 +1,20 @@
 import { Grid, Button, Typography } from "@mui/material";
 import {Link} from "react-router-dom";
 import {React, useState} from "react";
-import AuthModal from "./AuthModal";
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 
 function AppHeader(props) {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     const { user } = useContext(UserContext);
 
     const conditionalContent = (user == null) ? (
-        <Button variant="outlined" onClick={handleOpen} className="login-button">Login</Button>
+        <Button variant="outlined" onClick={props.handleOpen} className="login-button">Login</Button>
     ) : (
         <Typography id="username">{user}</Typography>
     );
 
     return (
         <>
-            <AuthModal open={open} handleClose={handleClose}/>
             <Grid container spacing={3}>
                 <Grid item xs={0} md={1}/>
                 <Grid item xs={3}><Link to="/home" className="MuiTypography-root" ><Typography variant="h4">Picture Chain</Typography></Link></Grid>

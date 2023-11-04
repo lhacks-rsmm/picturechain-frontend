@@ -7,7 +7,6 @@ import { UserContext } from '../context/UserContext';
 export default function AuthModal(props) {
     const [username, setUsername] = useState(null);
 
-    //const { dispatch } = useUserContext();
     const { userDispatch } = useContext(UserContext);
     console.log(userDispatch);
 
@@ -16,7 +15,6 @@ export default function AuthModal(props) {
             userDispatch({ type: 'SET_USER', payload: username });
             props.handleClose();
         }
-            //dispatch({type: "SET_USER", payload: username})
     };
 
     return (

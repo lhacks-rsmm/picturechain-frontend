@@ -12,17 +12,15 @@ export default function LobbyModal(props) {
 
     const navigate = useNavigate();
 
-    //const { lobby, lobbyDispatch } = useLobbyContext();
     const { lobbyDispatch } = useContext(LobbyContext);
 
-    //const { dispatch } = useUserContext();
     const { user } = useContext(UserContext);
 
     const handleCreate = () => {
         createLobby();
     };
 
-    const createLobby = async (type) => {
+    const createLobby = async () => {
         const apiURL = "http://127.0.0.1:8000" + "/createLobby";
 
         const data = {userID: user, lobbyType: 1};
@@ -48,7 +46,7 @@ export default function LobbyModal(props) {
         }
     };
 
-    const joinLobby = async (type) => {
+    const joinLobby = async () => {
         const apiURL = "http://127.0.0.1:8000" + "/joinLobby";
 
         const data = {userID: user, lobbyID: id};
@@ -71,7 +69,7 @@ export default function LobbyModal(props) {
     return (
         <Modal open={props.open} onClose={props.handleClose}>
             <Stack className="lobby-modal" gap={3}>
-                <Typography variant="h5" textAlign="center">Nickname</Typography>
+                <Typography variant="h5" textAlign="center">Lobby ID</Typography>
                 <TextField
                     id="id-field"
                     type="text"

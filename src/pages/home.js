@@ -7,6 +7,7 @@ import { useUserContext } from "../hooks/useUserContext";
 import { useEffect, useState, useContext } from "react";
 import LobbyModal from "../components/LobbyModal";
 import PrivateLobbyModal from "../components/PrivateLobbyModal"
+import AuthModal from "../components/AuthModal";
 
 export const GlobalConfig = createContext({
     BaseURL: process.env.REACT_APP_BASE_URL
@@ -14,13 +15,34 @@ export const GlobalConfig = createContext({
 
 export default function Home() {
     const [open, setOpen] = useState(false);
-    const [privateOpen, privateSetOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [privateOpen, privateSetOpen] = useState(false);
     const handlePrivateOpen = () => privateSetOpen(true);
     const handlePrivateClose = () => privateSetOpen(false);
 
-    const { user, userDispatch } = useUserContext();  
+    const [authOpen, authSetOpen] = useState(false);
+    const authHandleOpen = () => authSetOpen(true);
+    const authHandleClose = () => authSetOpen(false);
+
+    const { user } = useUserContext();  
+
+    const handlePublic = () => {
+        if (user) {
+            handleOpen();
+        } else {
+            authHandleOpen();
+        }
+    };
+
+    const handlePrivate = () => {
+        if (user) {
+            handlePrivateOpen();
+        } else {
+            authHandleOpen();
+        }
+    };
 
     //const config = useContext(GlobalConfig);
 
@@ -28,8 +50,9 @@ export default function Home() {
         <div>
         <LobbyModal open={open} handleClose={handleClose}/>
         <PrivateLobbyModal open={privateOpen} handleClose={handlePrivateClose}/>
+        <AuthModal open={authOpen} handleClose={authHandleClose}/>
         <Grid container spacing={3}>
-            <Grid item xs={12}><AppHeader /></Grid>
+            <Grid item xs={12}><AppHeader handleOpen={authHandleOpen}/></Grid>
             <Grid item xs={1} />
             <Grid item xs={10} className="img-container">
                 <Container className="featured-drawing" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
@@ -39,8 +62,8 @@ export default function Home() {
                 </Grid>
             <Grid item align xs={1} />
             <Grid item xs={3} />
-            <Grid i tem xs={3}><Button variant="contained" className="lobby-button" onClick={handleOpen}>Public</Button></Grid>
-            <Grid item xs={3}><Button variant="contained" className="lobby-button" onClick={handlePrivateOpen}>Private</Button></Grid>
+            <Grid i tem xs={3}><Button variant="contained" className="lobby-button" onClick={handlePublic}>Public</Button></Grid>
+            <Grid item xs={3}><Button variant="contained" className="lobby-button" onClick={handlePrivate}>Private</Button></Grid>
             <Grid item xs={3} />
         </Grid>
         </div>

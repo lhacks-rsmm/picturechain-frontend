@@ -1,6 +1,5 @@
-import { Modal, Typography, Stack, Button, Box, Paper } from "@mui/material";
+import { Modal, Typography, Stack, Button, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useUserContext } from "../hooks/useUserContext";
 import LobbySelection from "./LobbySelection";
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
@@ -14,10 +13,8 @@ export default function LobbyModal(props) {
 
     const navigate = useNavigate();
 
-    //const { lobby, lobbyDispatch } = useLobbyContext();
     const { lobbyDispatch } = useContext(LobbyContext);
 
-    //const { dispatch } = useUserContext();
     const { user } = useContext(UserContext);
 
     const handleJoin = () => {
@@ -61,7 +58,7 @@ export default function LobbyModal(props) {
         }
     }
 
-    const joinLobby = async (type) => {
+    const joinLobby = async () => {
         const apiURL = "http://127.0.0.1:8000" + "/joinLobby";
 
         const data = {userID: user, lobbyID: select};
