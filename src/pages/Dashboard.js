@@ -1,12 +1,15 @@
 import {React, useState} from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ImageArea from "../components/ImageArea";
 import UserList from "../components/UserList";
 import PromptForm from "../components/PromptForm";
 import AppHeader from "../components/AppHeader";
+import { useContext } from 'react';
+import { LobbyContext } from '../context/LobbyContext';
 
 function Dashboard(props) {
     const [currentImage, setCurrentImage] = useState("https://picsum.photos/800/600");
+    const { id } = useContext(LobbyContext);
 
     return (
         <Grid container spacing={3} className="main-container">
@@ -16,6 +19,7 @@ function Dashboard(props) {
                 <ImageArea currentImage={currentImage}/>
             </Grid>
             <Grid item xs={4}>
+                <Typography>ID: {id}</Typography>
                 <UserList />
             </Grid>
             <Grid item xs={12}>

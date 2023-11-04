@@ -2,13 +2,11 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 import AppHeader from "../components/AppHeader";
-import { json } from "react-router-dom";
 import { createContext } from "react";
 import { useUserContext } from "../hooks/useUserContext";
-import { useLobbyContext } from "../hooks/useLobbyContext";
 import { useEffect, useState, useContext } from "react";
-import { ContactSupport } from "@mui/icons-material";
 import LobbyModal from "../components/LobbyModal";
+import PrivateLobbyModal from "../components/PrivateLobbyModal"
 
 export const GlobalConfig = createContext({
     BaseURL: process.env.REACT_APP_BASE_URL
@@ -16,16 +14,20 @@ export const GlobalConfig = createContext({
 
 export default function Home() {
     const [open, setOpen] = useState(false);
+    const [privateOpen, privateSetOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const handlePrivateOpen = () => privateSetOpen(true);
+    const handlePrivateClose = () => privateSetOpen(false);
 
     const { user, userDispatch } = useUserContext();  
 
-    const config = useContext(GlobalConfig);
+    //const config = useContext(GlobalConfig);
 
     return (
         <div>
         <LobbyModal open={open} handleClose={handleClose}/>
+        <PrivateLobbyModal open={privateOpen} handleClose={handlePrivateClose}/>
         <Grid container spacing={3}>
             <Grid item xs={12}><AppHeader /></Grid>
             <Grid item xs={1} />
@@ -38,7 +40,7 @@ export default function Home() {
             <Grid item align xs={1} />
             <Grid item xs={3} />
             <Grid i tem xs={3}><Button variant="contained" className="lobby-button" onClick={handleOpen}>Public</Button></Grid>
-            <Grid item xs={3}><Button variant="contained" className="lobby-button">Private</Button></Grid>
+            <Grid item xs={3}><Button variant="contained" className="lobby-button" onClick={handlePrivateOpen}>Private</Button></Grid>
             <Grid item xs={3} />
         </Grid>
         </div>

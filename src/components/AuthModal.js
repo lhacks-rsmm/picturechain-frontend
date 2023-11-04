@@ -1,15 +1,22 @@
 import { Modal, TextField, Typography, Stack, Button } from "@mui/material";
 import { useState } from "react";
 import { useUserContext } from "../hooks/useUserContext";
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 export default function AuthModal(props) {
     const [username, setUsername] = useState(null);
 
-    const { dispatch } = useUserContext();
+    //const { dispatch } = useUserContext();
+    const { userDispatch } = useContext(UserContext);
+    console.log(userDispatch);
 
     const handle = () => {
-        if (username)
-            dispatch({type: "SET_USER", payload: username})
+        if (username)  {
+            userDispatch({ type: 'SET_USER', payload: username });
+            props.handleClose();
+        }
+            //dispatch({type: "SET_USER", payload: username})
     };
 
     return (
